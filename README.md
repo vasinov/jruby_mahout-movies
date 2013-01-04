@@ -15,7 +15,7 @@ Custom recommendation engine.
 
 #### 2. Copy the contents of `ratings.dat` to `dating_preferences`:
 ```
-COPY dating_preferences FROM '/path_to_file/ratings.dat' (DELIMITER ',');
+\COPY movies_preferences FROM '/path_to_file/u.data' (DELIMITER '	');
 ```
 
 This will take up to 30 minutes.
