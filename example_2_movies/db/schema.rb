@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107235101) do
+ActiveRecord::Schema.define(:version => 20130108210346) do
 
   create_table "genres", :force => true do |t|
     t.string "name"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(:version => 20130107235101) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "preferences", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "item_id"
+    t.integer "rating"
+  end
+
+  add_index "preferences", ["user_id", "item_id"], :name => "index_preferences_on_user_id_and_item_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
