@@ -1,7 +1,7 @@
 require 'csv'
 
 namespace :db do
-  desc "Loads movies to db from GroupLens Movies dataset"
+  desc "Loads genres to db from the GroupLens Movies dataset"
   task :load_genres, [:path]  => :environment  do |t, args|
     args.with_defaults(:path => ".")
 
@@ -21,6 +21,7 @@ namespace :db do
     end
   end
 
+  desc "Loads movies to db from the GroupLens Movies dataset"
   task :load_movies, [:path]  => :environment  do |t, args|
     args.with_defaults(:path => ".")
 
@@ -52,6 +53,7 @@ namespace :db do
     end
   end
 
+  desc "Loads users to db from the GroupLens Movies dataset"
   task :load_users, [:path]  => :environment  do |t, args|
     args.with_defaults(:path => ".")
 
@@ -78,6 +80,30 @@ namespace :db do
     end
   end
 
-  desc "Loads all data from GroupLens Movies dataset"
-  task :load_all_data => [:load_genres, :load_movies, :load_users]
+  desc "Loads preferences to db from the GroupLens Movies dataset"
+  task :load_preferences, [:path]  => :environment  do |t, args|
+    args.with_defaults(:path => ".")
+
+    begin
+      puts "Loading preferences into DB..."
+      preferences = CSV.read(File.join(args.path, 'u.data'))
+      Preference.delete_all
+
+      preferences.each do |preference|
+        Preference.create!({ :user_id => preference[0],
+                       :item_id => preference[1],
+                       :value => preference[2],
+                       :created_at => preference[3],
+                       :modified_at => preference[3],
+                     }) if preference[0]
+      end
+
+      puts "#{Preference.count} users added"
+    rescue Exception => e
+      puts e
+    end
+  end
+
+  desc "Loads all data from the GroupLens Movies dataset"
+  task :load_all_data => [:load_genres, :load_movies, :load_users, :load_preferences]
 end
