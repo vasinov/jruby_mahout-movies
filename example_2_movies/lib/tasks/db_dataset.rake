@@ -104,5 +104,12 @@ namespace :db do
   end
 
   desc "Loads all data from the GroupLens Movies dataset"
-  task :load_all_data => [:load_genres, :load_movies, :load_users, :load_preferences]
+  task :load_all_data, [:path] => :environment do |t, args|
+    args.with_defaults(:path => ".")
+
+    Rake::Task['db:load_genres'].invoke(args.path)
+    Rake::Task['db:load_movies'].invoke(args.path)
+    Rake::Task['db:load_users'].invoke(args.path)
+    Rake::Task['db:load_preferences'].invoke(args.path)
+  end
 end
