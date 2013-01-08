@@ -1,4 +1,5 @@
 require 'csv'
+require 'date'
 
 namespace :db do
   desc "Loads genres to db from the GroupLens Movies dataset"
@@ -86,19 +87,17 @@ namespace :db do
 
     begin
       puts "Loading preferences into DB..."
-      preferences = CSV.read(File.join(args.path, 'u.data'))
+      preferences = CSV.read(File.join(args.path, 'u.data'), { col_sep: "\t",
+                                                               encoding: 'windows-1251:utf-8' })
       Preference.delete_all
 
       preferences.each do |preference|
-        Preference.create!({ :user_id => preference[0],
-                       :item_id => preference[1],
-                       :value => preference[2],
-                       :created_at => preference[3],
-                       :modified_at => preference[3],
-                     }) if preference[0]
+        created_at = DateTime.strptime(preference[3],'%s')
+
+        ActiveRecord::Base.connection.execute("INSERT INTO preferences VALUES (#{preference[0]}, #{preference[1]}, #{preference[2]}, '#{created_at}', '#{created_at}')")
       end
 
-      puts "#{Preference.count} users added"
+      puts "#{Preference.count} preferences added"
     rescue Exception => e
       puts e
     end
