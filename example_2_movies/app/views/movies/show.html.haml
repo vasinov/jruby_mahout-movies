@@ -1,0 +1,15 @@
+.well
+  %h3.page-header JRuby Mahout Movies
+  %h4.page-header
+    = link_to @movie.title, movie_path(@movie)
+  .row-fluid.movie
+    .span4
+      %img{ :src => "data:image/jpeg;base64,#{@movie.poster}" }
+    .span8
+      %p
+        = @movie.plot
+      %h5 Similar Movies
+      %ul
+      - @movie.similar_movies.each do |movie|
+        %li
+          = movie.title
