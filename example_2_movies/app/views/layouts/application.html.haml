@@ -8,4 +8,9 @@
     = javascript_include_tag "application"
   %body.movies
     .container.main
+      .navbar
+        .navbar-inner
+          %ul.nav
+            %li
+              %a{ :href => '/' } Home
       = yield
