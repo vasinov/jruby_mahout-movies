@@ -8,14 +8,8 @@ Basic JRuby Mahout Example
 Custom recommendation engine.
 
 ### Setup
-#### 1. Run `setup.sql` in psql:
+#### 1. Download the dataset
+#### 2. Import data with a rake file:
 ```
-\i setup.sql
+rake db:load_all_data["/path_to/ml-100k"]
 ```
-
-#### 2. Copy the contents of `ratings.dat` to `dating_preferences`:
-```
-\COPY movies_preferences FROM '/path_to_file/u.data' (DELIMITER '	');
-```
-
-This will take up to 30 minutes.
