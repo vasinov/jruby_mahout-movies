@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.10'
 gem 'activerecord-jdbcpostgresql-adapter'
+gem 'http'
 
 gem 'jruby-openssl'
 
@@ -12,8 +13,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 gem 'jruby_mahout'
 
 gem 'devise'
+
+gem 'jquery-rails'
+gem 'haml-rails'
+gem 'anjlab-bootstrap-rails', '>= 2.2', :require => 'bootstrap-rails'
