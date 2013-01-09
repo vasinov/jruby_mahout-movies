@@ -1,0 +1,56 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require twitter/bootstrap
+ *= require twitter/bootstrap-responsive
+ *= require_tree .
+ */
+
+
+body.movies {
+  background-color: grey;
+  background-image: url(/assets/background.jpg);
+
+  .container.main {
+    max-width: 600px;
+  }
+
+  h3.page-header {
+    margin-bottom: 20px;
+  }
+
+  h4.page-header {
+    margin-bottom: 0px;
+  }
+
+  .navbar {
+    margin: 20px 0 40px 0;
+    box-shadow: 1px 1px 3px #000000;
+    .navbar-inner {
+      background-color: white;
+      background-image: none;
+      a {
+        color: #333333;
+      }
+    }
+  }
+
+  .well.home {
+    background-color: white;
+    box-shadow: 1px 1px 3px #000000;
+  }
+
+  .row-fluid.movies {
+    .span3 {
+      height: 150px;
+    }
+  }
+}

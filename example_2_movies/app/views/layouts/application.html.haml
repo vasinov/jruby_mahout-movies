@@ -1,0 +1,11 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %title JRuby Mahout Movies
+    = stylesheet_link_tag "application", :media => "all"
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    = javascript_include_tag "application"
+  %body.movies
+    .container.main
+      = yield
