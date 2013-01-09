@@ -10,7 +10,6 @@
  *
  *= require_self
  *= require twitter/bootstrap
- *= require twitter/bootstrap-responsive
  *= require_tree .
  */
 
@@ -20,7 +19,7 @@ body.movies {
   background-image: url(/assets/background.jpg);
 
   .container.main {
-    max-width: 600px;
+    max-width: 800px;
   }
 
   h3.page-header {
@@ -43,14 +42,23 @@ body.movies {
     }
   }
 
-  .well.home {
+  .well {
     background-color: white;
     box-shadow: 1px 1px 3px #000000;
   }
 
   .row-fluid.movies {
+    .span3:nth-child(4n + 1) {
+      margin: 0;
+    }
     .span3 {
-      height: 150px;
+      height: 310px;
+
+      h5 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
