@@ -2,7 +2,7 @@
   .navbar-inner
     %ul.nav
       %li
-        %a{:href => '/'} Home
+        %a{ :href => '/' } Home
 .well.home
   %h3.page-header JRuby Mahout Movies
   %h4.page-header Popular Movies
@@ -10,4 +10,4 @@
     - @movies.each do |movie|
       .span3
         = movie.title
-        = movie.screenshot
+        %img{ :src => "data:image/jpeg;base64,#{movie.poster}" }
