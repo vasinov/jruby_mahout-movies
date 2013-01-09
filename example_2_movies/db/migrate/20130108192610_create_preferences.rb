@@ -3,8 +3,11 @@ class CreatePreferences < ActiveRecord::Migration
     create_table :preferences, :id => false do |t|
       t.references :user
       t.references :item
+      t.integer :rating
+      t.timestamps
     end
-    add_index :preferences, [:user_id, :item_id]
+    add_index :preferences, :user_id
+    add_index :preferences, :item_id
   end
 
   def self.down
