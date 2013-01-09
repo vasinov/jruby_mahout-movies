@@ -1,3 +1,8 @@
+PATH
+  remote: ../../jruby_mahout
+  specs:
+    jruby_mahout (0.2.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -70,7 +75,6 @@ GEM
       thor (>= 0.14, < 2.0)
     jruby-openssl (0.8.2)
       bouncy-castle-java (>= 1.5.0146.1)
-    jruby_mahout (0.2.2)
     json (1.7.6)
     json (1.7.6-java)
     mail (2.4.4)
@@ -143,7 +147,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   jruby-openssl
-  jruby_mahout
+  jruby_mahout!
   rails (= 3.2.10)
   sass-rails (~> 3.2.3)
   therubyrhino

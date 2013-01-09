@@ -12,7 +12,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jruby_mahout'
+gem 'jruby_mahout', :path => "../../jruby_mahout"
 
 gem 'devise'
 
