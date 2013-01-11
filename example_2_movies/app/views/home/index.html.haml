@@ -1,9 +1,8 @@
 .well
-  %h3.page-header JRuby Mahout Movies
   %h4.page-header Popular Movies
   .row-fluid.movies
     - @movies.each do |movie|
       .span3
         %h5
           = link_to movie.title, movie_path(movie)
-        %img{ :src => "data:image/jpeg;base64,#{movie.poster}" }
+        %img{ :src => movie.rt_poster }
