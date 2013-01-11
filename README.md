@@ -11,5 +11,5 @@ Custom recommendation engine.
 #### 1. Download the dataset
 #### 2. Import data with a rake file:
 ```
-rake db:load_all_data["/path_to/ml-100k"]
+jruby -S -J-Xmx1024m rake db:load_preferences["/path_to/hetrec2011-movielens-2k"]
 ```
