@@ -1,0 +1,9 @@
+%h2 Your Profile
+.well
+  %h4.page-header Movies That You Will Like
+  .row-fluid.movies
+    - @user.recommendations.each do |movie|
+      .span3
+        %h5
+          = link_to movie.title, movie_path(movie)
+        %img{ :src => movie.rt_poster }

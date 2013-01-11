@@ -1,0 +1,15 @@
+%h2 Sign in
+= form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "well"} do |f|
+  .field
+    = f.label :email, "Email"
+    = f.text_field :email
+  .field
+    = f.label :password
+    = f.password_field :password
+  %hr/
+  - if devise_mapping.rememberable?
+    %label.checkbox
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Sign in", :class => "btn btn-primary"
