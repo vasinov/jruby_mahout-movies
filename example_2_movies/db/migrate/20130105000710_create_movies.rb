@@ -3,7 +3,8 @@ class CreateMovies < ActiveRecord::Migration
     create_table :movies do |t|
       t.string :title
       t.string :release_date
-      t.text :imdb_url
+      t.string :rt_id
+      t.string :rt_poster
 
       t.timestamps
     end

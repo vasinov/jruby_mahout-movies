@@ -28,7 +28,8 @@ ActiveRecord::Schema.define(:version => 20130108192610) do
   create_table "movies", :force => true do |t|
     t.string   "title"
     t.string   "release_date"
-    t.text     "imdb_url"
+    t.string   "rt_id"
+    t.string   "rt_poster"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
