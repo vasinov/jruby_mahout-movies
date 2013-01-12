@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20130108192610) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "preferences", :id => false, :force => true do |t|
+  create_table "preferences", :force => true do |t|
     t.integer  "user_id"
     t.integer  "item_id"
     t.integer  "rating"

@@ -6,8 +6,8 @@ class CreatePreferences < ActiveRecord::Migration
       t.integer :rating
       t.timestamps
     end
-    add_index :preferences, :user_id
-    add_index :preferences, :item_id
+    add_index :preferences, :user_id, :unique => false
+    add_index :preferences, :item_id, :unique => false
   end
 
   def self.down

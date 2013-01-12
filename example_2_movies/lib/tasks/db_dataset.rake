@@ -57,33 +57,6 @@ namespace :db do
     end
   end
 
-  #desc "Loads users to db from the GroupLens Movies dataset"
-  #task :load_users, [:path]  => :environment  do |t, args|
-  #  args.with_defaults(:path => ".")
-  #
-  #  begin
-  #    puts "Loading users into DB..."
-  #    users = CSV.read(File.join(args.path, 'u.user'), { col_sep: "|",
-  #                                                        encoding: 'windows-1251:utf-8' })
-  #    User.delete_all
-  #
-  #    users.each do |user|
-  #      User.create!({ :id => user[0],
-  #                    :age => user[1],
-  #                    :email => "foo-#{user[0]}@bar.com",
-  #                    :password => "foobar",
-  #                    :gender => user[2],
-  #                    :occupation => user[3],
-  #                    :zip => user[4],
-  #      }) if user[0]
-  #    end
-  #
-  #    puts "#{User.count} users added"
-  #  rescue Exception => e
-  #    puts e
-  #  end
-  #end
-
   desc "Loads preferences to db from the GroupLens Movies dataset"
   task :load_preferences, [:path]  => :environment  do |t, args|
     args.with_defaults(:path => ".")
@@ -101,13 +74,16 @@ namespace :db do
         created_at = DateTime.parse("#{preference[5]}-#{preference[4]}-#{preference[3]} #{preference[6]}:#{preference[7]}:#{preference[8]}")
 
         ActiveRecord::Base.connection.execute(
-            "INSERT INTO preferences VALUES (#{preference[0]},
+            "INSERT INTO preferences VALUES (#{i + 1},
+                                             #{preference[0]},
                                              #{preference[1]},
                                              #{preference[2]},
                                              '#{created_at}',
                                              '#{created_at}')"
         )
       end
+
+      ActiveRecord::Base.connection.execute("ALTER SEQUENCE preferences_id_seq RESTART WITH #{Preference.count + 1}")
 
       puts "#{Preference.count} preferences added"
     rescue Exception => e
@@ -121,7 +97,6 @@ namespace :db do
 
     #Rake::Task['db:load_genres'].invoke(args.path)
     Rake::Task['db:load_movies'].invoke(args.path)
-    #Rake::Task['db:load_users'].invoke(args.path)
     Rake::Task['db:load_preferences'].invoke(args.path)
   end
 end
