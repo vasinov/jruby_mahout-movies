@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
         :table_name => Preference.table_name
     }).data_model
 
-    Movie.find(recommender.recommend(id, 10, nil))
+    recommended_movies = []
+
+    recommender.recommend(id, 10, nil).each do |recommendation|
+      recommended_movies << recommendation[0]
+    end
+
+    Movie.find(recommended_movies)
   end
 end
