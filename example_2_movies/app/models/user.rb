@@ -9,27 +9,12 @@ class User < ActiveRecord::Base
                   :age, :gender, :occupation, :zip
 
   def recommendations
-    db_config = Rails.configuration.database_configuration[Rails.env]
-    recommender = JrubyMahout::Recommender.new(
-        "EuclideanDistanceSimilarity",
-        3,
-        "GenericUserBasedRecommender",
-        false)
-    recommender.data_model = JrubyMahout::DataModel.new("postgres", {
-        :host => db_config["host"],
-        :port => db_config["port"],
-        :db_name => db_config["database"],
-        :username => db_config["username"],
-        :password => db_config["password"],
-        :table_name => Preference.table_name
-    }).data_model
+    recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
 
-    recommended_movies = []
+    Movie.find(recommender.recommend_movies(id, 10, nil))
+  end
 
-    recommender.recommend(id, 10, nil).each do |recommendation|
-      recommended_movies << recommendation[0]
-    end
-
-    Movie.find(recommended_movies)
+  def rated(movie_id, rating)
+    preferences.where(:item_id => movie_id, :rating => rating).any?
   end
 end
