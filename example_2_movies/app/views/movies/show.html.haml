@@ -5,10 +5,17 @@
   .row-fluid.movie
     .span4
       %img{ :src => @movie.rt_poster }
+      %p
+        Rate:
+        = link_to "1", rate_movie_path(@movie.id, 1), :method => :post
+        = link_to "2", rate_movie_path(@movie.id, 2), :method => :post
+        = link_to "3", rate_movie_path(@movie.id, 3), :method => :post
+        = link_to "4", rate_movie_path(@movie.id, 4), :method => :post
+        = link_to "5", rate_movie_path(@movie.id, 5), :method => :post
     .span8
 
       %h5 Similar Movies
       %ul
-      - @movie.similar_movies.each do |movie|
-        %li
-          = link_to "#{movie.title} (#{movie.release_date})", movie_path(movie)
+      -#- @movie.similar_movies.each do |movie|
+      -#  %li
+      -#    = link_to "#{movie.title} (#{movie.release_date})", movie_path(movie)
