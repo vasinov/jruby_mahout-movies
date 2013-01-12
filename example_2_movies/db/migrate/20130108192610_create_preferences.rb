@@ -1,6 +1,6 @@
 class CreatePreferences < ActiveRecord::Migration
   def self.up
-    create_table :preferences, :id => false do |t|
+    create_table :preferences do |t|
       t.references :user
       t.references :item
       t.integer :rating

@@ -4,7 +4,11 @@ Movies::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :movies
+  resources :movies do
+    member do
+      post 'rate/:rating', :action => 'rate', :as => "rate"
+    end
+  end
 
   match 'profile' => 'users#profile', :via => :get
 end
