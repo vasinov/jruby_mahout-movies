@@ -10,5 +10,8 @@
   .field
     = f.label :password_confirmation
     = f.password_field :password_confirmation
+  %p
+    Already have an account?
+    = link_to "Sign In", new_user_session_path
   .actions
     = f.submit "Sign up", :class => "btn btn-primary"
