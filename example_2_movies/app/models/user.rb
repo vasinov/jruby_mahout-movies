@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   def recommendations
     recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
 
-    Movie.find(recommender.recommend_movies(id, 10, nil))
+    rescorer = YearRescorer.new(2000)
+    Movie.find(recommender.recommend_movies(id, 10, rescorer))
   end
 
   def rated(movie_id, rating)

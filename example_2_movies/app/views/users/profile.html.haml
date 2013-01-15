@@ -5,5 +5,5 @@
     - @user.recommendations.each do |movie|
       .span3
         %h5
-          = link_to movie.title, movie_path(movie)
+          = link_to "#{movie.title} (#{movie.release_date})", movie_path(movie)
         %img{ :src => movie.rt_poster }
