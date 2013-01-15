@@ -9,7 +9,8 @@ class Movie < ActiveRecord::Base
   def similar_movies
     recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericItemBasedRecommender", false)
 
-    Movie.find(recommender.similar_movies(id, 10, nil))
+    rescorer = GenreRescorer.new(genres.map(&:id))
+    Movie.find(recommender.similar_movies(id, 10, rescorer))
   end
 
   def plot
