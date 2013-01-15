@@ -4,6 +4,8 @@ class Movie < ActiveRecord::Base
 
   attr_accessible :id, :title, :release_date, :rt_id, :rt_poster
 
+  validates_presence_of :title
+
   def similar_movies
     recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericItemBasedRecommender", false)
 

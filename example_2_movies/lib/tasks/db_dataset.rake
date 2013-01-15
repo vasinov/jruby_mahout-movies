@@ -3,24 +3,30 @@ require 'date'
 
 namespace :db do
   desc "Loads genres to db from the GroupLens Movies dataset"
-  #task :load_genres, [:path]  => :environment  do |t, args|
-  #  args.with_defaults(:path => ".")
-  #
-  #  begin
-  #    puts "Loading genres into DB..."
-  #    genres = CSV.read(File.join(args.path, 'u.genre'), { col_sep: "|",
-  #                                                        encoding: 'windows-1251:utf-8' })
-  #    Genre.delete_all
-  #
-  #    genres.each do |genre|
-  #      Genre.create!({ :id => genre[1], :name => genre[0] }) if genre[1]
-  #    end
-  #
-  #    puts "#{Genre.count} genres added"
-  #  rescue Exception => e
-  #    puts e
-  #  end
-  #end
+  task :load_genres, [:path]  => :environment  do |t, args|
+    args.with_defaults(:path => ".")
+
+    begin
+      puts "Loading genres into DB..."
+      genres = CSV.read(File.join(args.path, 'movie_genres.dat'), { col_sep: "\t",
+                                                          encoding: 'windows-1251:utf-8' })
+      genres.shift
+      Genre.delete_all
+
+      genres.each do |movie_genre|
+        genre = Genre.find_or_initialize_by_name(movie_genre[1])
+        genre.save!
+
+        movie = Movie.find(movie_genre[0].to_i)
+        movie.genres << genre
+        movie.save!
+      end
+
+      puts "#{Genre.count} genres added"
+    rescue Exception => e
+      puts e
+    end
+  end
 
   desc "Loads movies to db from the GroupLens Movies dataset"
   task :load_movies, [:path]  => :environment  do |t, args|
@@ -95,8 +101,8 @@ namespace :db do
   task :load_all_data, [:path] => :environment do |t, args|
     args.with_defaults(:path => ".")
 
-    #Rake::Task['db:load_genres'].invoke(args.path)
     Rake::Task['db:load_movies'].invoke(args.path)
+    Rake::Task['db:load_genres'].invoke(args.path)
     Rake::Task['db:load_preferences'].invoke(args.path)
   end
 end
