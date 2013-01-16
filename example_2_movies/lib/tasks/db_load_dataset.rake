@@ -3,7 +3,7 @@ require 'date'
 
 namespace :db do
   desc "Loads genres to db from the GroupLens Movies dataset"
-  task :load_genres, [:path]  => :environment  do |t, args|
+  task :load_genres, [:path]  => :environment do |t, args|
     args.with_defaults(:path => ".")
 
     begin
@@ -29,7 +29,7 @@ namespace :db do
   end
 
   desc "Loads movies to db from the GroupLens Movies dataset"
-  task :load_movies, [:path]  => :environment  do |t, args|
+  task :load_movies, [:path]  => :environment do |t, args|
     args.with_defaults(:path => ".")
 
     begin
@@ -64,7 +64,7 @@ namespace :db do
   end
 
   desc "Loads preferences to db from the GroupLens Movies dataset"
-  task :load_preferences, [:path]  => :environment  do |t, args|
+  task :load_preferences, [:path]  => :environment do |t, args|
     args.with_defaults(:path => ".")
 
     begin

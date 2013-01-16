@@ -5,3 +5,4 @@ log/*.log
 pkg/
 .rbenv-version
 tmp/
+*.rdb
