@@ -6,13 +6,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :id, :email, :password, :password_confirmation, :remember_me,
-                  :age, :gender, :occupation, :zip
+                  :age, :gender, :occupation, :zip, :year_of_birth
+
+  validates_presence_of :year_of_birth
 
   def recommendations
     user_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
     user_recommender.cached = true
 
-    rescorer = YearRescorer.new(2000)
+    rescorer = YearRescorer.new(year_of_birth + 5)
     Movie.find(user_recommender.recommend_movies(id, 10, rescorer))
   end
 

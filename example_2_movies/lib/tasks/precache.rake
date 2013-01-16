@@ -44,7 +44,7 @@ namespace :precache do
       users.each_with_index do |user, i|
         user_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
         user_recommender.cached = true
-        rescorer = YearRescorer.new(2000)
+        rescorer = YearRescorer.new(user.year_of_birth + 5)
 
         user_recommender.recommender.redis_cache.empty!("recommendations",
                                                          { :user_id => user.id, :number_of_items => number_of_items })
