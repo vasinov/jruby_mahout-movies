@@ -7,10 +7,11 @@ class Movie < ActiveRecord::Base
   validates_presence_of :title
 
   def similar_movies
-    recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericItemBasedRecommender", false)
+    movie_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericItemBasedRecommender", false)
+    movie_recommender.cached = true
 
     rescorer = GenreRescorer.new(genres.map(&:id))
-    Movie.find(recommender.similar_movies(id, 10, rescorer))
+    Movie.find(movie_recommender.similar_movies(id, 10, rescorer))
   end
 
   def plot

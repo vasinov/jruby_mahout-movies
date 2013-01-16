@@ -18,6 +18,8 @@ class MoviesController < ApplicationController
     preference.rating = rating
     preference.save!
 
+    current_user.empty_cache
+
     respond_to do |format|
       format.html { redirect_to (@movie), :notice => 'You rated a movie.' }
     end

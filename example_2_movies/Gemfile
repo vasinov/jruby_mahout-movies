@@ -4,6 +4,7 @@ gem 'rails', '3.2.10'
 gem 'activerecord-jdbcpostgresql-adapter'
 
 gem 'jruby-openssl'
+gem 'redis'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
