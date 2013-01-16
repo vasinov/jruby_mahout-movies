@@ -1,5 +1,5 @@
 PATH
-  remote: ../../jruby_mahout
+  remote: ../jruby_mahout
   specs:
     jruby_mahout (0.2.2)
 
