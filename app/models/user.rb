@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     user_recommender.cached = true
 
     rescorer = YearRescorer.new(year_of_birth + 5)
-    Movie.find(user_recommender.recommend_movies(id, 10, rescorer))
+    Movie.find(user_recommender.recommend_movies(id, 20, rescorer))
   end
 
   def rated(movie_id, rating)

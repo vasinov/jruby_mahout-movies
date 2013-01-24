@@ -30,6 +30,10 @@ body.movies {
     margin-bottom: 0px;
   }
 
+  h2 {
+    color: white;
+  }
+
   .navbar {
     margin: 20px 0 40px 0;
     box-shadow: 1px 1px 3px #000000;
@@ -53,6 +57,19 @@ body.movies {
     }
     .span3 {
       height: 310px;
+
+      .poster {
+        border-radius: 5px;
+        width: 178px;
+        height: 239px;
+        overflow: hidden;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.80);
+        border: 1px solid white;
+
+        img {
+          width: 178px;
+        }
+      }
 
       h5 {
         overflow: hidden;

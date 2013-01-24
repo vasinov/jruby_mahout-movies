@@ -2,8 +2,5 @@
 .well
   %h4.page-header Movies That You Will Like
   .row-fluid.movies
-    - @user.recommendations.each do |movie|
-      .span3
-        %h5
-          = link_to "#{movie.title} (#{movie.release_date})", movie_path(movie)
-        %img{ :src => movie.rt_poster }
+    - @user.recommendations.each do |movie| @movie = movie
+      = render 'movies/movie'

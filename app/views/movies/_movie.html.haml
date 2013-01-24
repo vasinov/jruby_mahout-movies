@@ -1,0 +1,11 @@
+.span3
+  %h5
+    = link_to @movie.title, movie_path(@movie)
+  .poster
+    = link_to movie_path(@movie) do
+      %img{ :src => @movie.rt_poster }
+  %input.star{ :name => "star-#{@movie.id}", :type => "radio", :class => "rating" }
+  %input.star{ :name => "star-#{@movie.id}", :type => "radio", :class => "rating" }
+  %input.star{ :name => "star-#{@movie.id}", :type => "radio", :class => "rating", :checked => "checked" }
+  %input.star{ :name => "star-#{@movie.id}", :class => "rating", :type => "radio" }
+  %input.star{ :name => "star-#{@movie.id}", :class => "rating", :type => "radio" }
