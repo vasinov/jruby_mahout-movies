@@ -1,6 +1,9 @@
 $(document).ready ->
   $('.star').raty( {
     path: "/assets/",
+    score: ->
+      return $(this).attr('data-rating')
+    ,
     click: (score, evt) ->
-      console.log "ID: " + $(this).parent().attr("id") + "\nscore: " + score + "\nevent: " + evt
+      $.post "/movies/" + $(this).parent().data("movie_id") + "/rate/" + score + ".json", "json"
   })

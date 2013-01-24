@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
     user_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
     user_recommender.cached = true
     user_recommender.recommender.redis_cache.empty!("recommendations",
-                                                    { :user_id => id, :number_of_items => 10 })
+                                                    { :user_id => id, :number_of_items => 20 })
   end
 end

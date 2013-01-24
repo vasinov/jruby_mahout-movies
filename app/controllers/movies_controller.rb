@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to (@movie), :notice => 'You rated a movie.' }
+      format.json { render :json => {:message => 'OK' } }
     end
   end
 end
