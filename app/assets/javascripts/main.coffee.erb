@@ -1,3 +1,6 @@
 $(document).ready ->
-  $(".rating").rating callback: (value, link) ->
-    console.log value
+  $('.star').raty( {
+    path: "/assets/",
+    click: (score, evt) ->
+      console.log "ID: " + $(this).parent().attr("id") + "\nscore: " + score + "\nevent: " + evt
+  })
