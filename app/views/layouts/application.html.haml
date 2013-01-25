@@ -21,3 +21,16 @@
               %li= link_to "Sign Up", new_user_registration_path
               %li= link_to "Sign In", new_user_session_path
       = yield
+      .well.centered
+        %p
+          &copy; Vasily Vasinov. This demo site is part of the
+          %a{ :href => "https://github.com/vasinov/jruby_mahout" }JRuby Mahout
+          open source project.
+        %p
+          The original Movielens dataset is from
+          %a{ :href => "http://www.grouplens.org" }GroupLens research group
+        %p
+          The dataset used in this demo includes data from
+          %a{ :href => "http://www.imdb.com" }IMDb website
+          and
+          %a{ :href => "http://www.rottentomatoes.com" }Rotten Tomatoes website
