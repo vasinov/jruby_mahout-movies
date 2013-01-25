@@ -2,9 +2,9 @@ class Movie < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :genres
 
-  attr_accessible :id, :title, :release_date, :rt_id, :rt_poster
+  attr_accessible :id, :title, :release_date, :rt_id, :rt_poster, :rt_critics_score
 
-  validates_presence_of :year_of_birth
+  validates_presence_of :title
 
   def similar_movies
     movie_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericItemBasedRecommender", false)

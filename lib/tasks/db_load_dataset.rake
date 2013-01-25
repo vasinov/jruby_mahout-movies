@@ -42,19 +42,13 @@ namespace :db do
       ActiveRecord::Base.connection.execute("TRUNCATE genres_movies")
 
       movies.each do |movie|
-       Movie.create!({ :id => movie[0],
+       Movie.create({ :id => movie[0],
                                    :title => movie[1],
                                    :release_date => movie[5],
                                    :rt_id => movie[6],
-                                   :rt_poster => movie[20]
+                                   :rt_poster => movie[20],
+                                   :rt_critics_score => movie[20]
         }) if movie[0]
-
-        #movie.each_with_index do |property, i|
-        #  if i.between?(5, 23) and property != "0"
-        #    new_movie.genres << Genre.find(i - 5)
-        #    new_movie.save!
-        #  end
-        #end
       end
 
       puts "#{Movie.count} movies added"

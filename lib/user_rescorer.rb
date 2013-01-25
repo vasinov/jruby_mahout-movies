@@ -1,8 +1,9 @@
-class YearRescorer
+class UserRescorer
   java_import org.apache.mahout.cf.taste.recommender.IDRescorer
 
-  def initialize(current_year)
+  def initialize(current_year, min_rt_rating)
     @current_year = current_year
+    @min_rt_rating = min_rt_rating
   end
 
   def rescore(item_id, original_score)
@@ -14,6 +15,6 @@ class YearRescorer
   def is_filtered(item_id)
     movie = Movie.find(item_id)
 
-    (movie.release_date.to_i < 1990) ? true : false
+    (movie.release_date.to_i < @current_year and (!movie.rt_critics_score.nil? and movie.rt_critics_score <  @min_rt_rating)) ? true : false
   end
 end

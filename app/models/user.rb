@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
     user_recommender = Recommender.new("EuclideanDistanceSimilarity", 3, "GenericUserBasedRecommender", false)
     user_recommender.cached = true
 
-    rescorer = YearRescorer.new(year_of_birth + 5)
+    rescorer = UserRescorer.new(year_of_birth + 5, 5)
     Movie.find(user_recommender.recommend_movies(id, 20, rescorer))
   end
 

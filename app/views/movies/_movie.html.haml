@@ -4,5 +4,6 @@
   .poster
     = link_to movie_path(@movie) do
       %img{ :src => @movie.rt_poster }
-  %div{ :data => { :movie_id => @movie.id } }
-    .star{ :data => { :rating => (current_user.preferences.where(:item_id => @movie.id).any?) ? current_user.preferences.where(:item_id => @movie.id).first.rating : nil } }
+  - if current_user
+    %div{ :data => { :movie_id => @movie.id } }
+      .star{ :data => { :rating => (current_user.preferences.where(:item_id => @movie.id).any?) ? current_user.preferences.where(:item_id => @movie.id).first.rating : nil } }

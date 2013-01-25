@@ -1,34 +1,14 @@
 .well
-  %h3.page-header JRuby Mahout Movies
   %h4.page-header
-    = link_to "#{@movie.title} (#{@movie.release_date})", movie_path(@movie)
+    = "#{@movie.title} (#{@movie.release_date})"
   .row-fluid.movie
     .span4
-      %img{ :src => @movie.rt_poster }
-      %p
-        Rate:
-        - if user_signed_in?
-          = link_to "1", rate_movie_path(@movie.id, 1),
-                         :class => (current_user.rated(@movie.id, 1)) ? "active" : "",
-                         :method => :post
-          = link_to "2", rate_movie_path(@movie.id, 2),
-                         :class => (current_user.rated(@movie.id, 2)) ? "active" : "",
-                         :method => :post
-          = link_to "3", rate_movie_path(@movie.id, 3),
-                         :class => (current_user.rated(@movie.id, 3)) ? "active" : "",
-                         :method => :post
-          = link_to "4", rate_movie_path(@movie.id, 4),
-                         :class => (current_user.rated(@movie.id, 4)) ? "active" : "",
-                         :method => :post
-          = link_to "5", rate_movie_path(@movie.id, 5),
-                         :class => (current_user.rated(@movie.id, 5)) ? "active" : "",
-                         :method => :post
-        - else
-          = link_to "1", new_user_session_path
-          = link_to "2", new_user_session_path
-          = link_to "3", new_user_session_path
-          = link_to "4", new_user_session_path
-          = link_to "5", new_user_session_path
+      .poster
+        = link_to movie_path(@movie) do
+          %img{ :src => @movie.rt_poster }
+      - if current_user
+        %div{ :data => { :movie_id => @movie.id } }
+          .star{ :data => { :rating => (current_user.preferences.where(:item_id => @movie.id).any?) ? current_user.preferences.where(:item_id => @movie.id).first.rating : nil } }
     .span8
       %h5 Similar Movies
       %ul
